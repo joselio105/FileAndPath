@@ -1,0 +1,19 @@
+{
+    "name": "plugse/fileandpath",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Plugse\\Fp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "José Hélio Veríssimo Jr",
+            "email": "jose.helio@ufsc.br"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10"
+    }
+}
