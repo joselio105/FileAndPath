@@ -1,6 +1,8 @@
 <?php
 
-namespace Plugse\FP;
+declare(strict_types=1);
+
+namespace Plugse\Fp;
 
 use Plugse\FP\Exceptions\FileAlreadyExists;
 use Plugse\FP\Exceptions\FileCannotBeOppend;
@@ -15,7 +17,7 @@ class File
     {
         $response = [];
 
-        foreach (explode("\n", self::readFile($filename)) as $row) {
+        foreach (explode(self::BROKE_LINE, self::readFile($filename)) as $row) {
             array_push($response, explode(' - ', $row));
         }
 
@@ -23,7 +25,7 @@ class File
     }
     public static function readJsonFile(string $filename): array
     {
-        return json_decode(self::readFile($filename), JSON_PRETTY_PRINT);
+        return json_decode(self::readFile($filename), true);
     }
 
     public static function readFromDotEnvFile(string $filename): array
@@ -57,7 +59,7 @@ class File
         return implode(self::BROKE_LINE, $fileContent);
     }
 
-    public static function saveOnLogFile(string $filename, array $dataStructure): void
+    public static function saveOnLogFile(string $filename, array $dataStructure, bool $update = false): void
     {
         $content = [];
 
@@ -65,22 +67,22 @@ class File
             array_push($content, implode(' - ', $element));
         }
 
-        self::saveFile($filename, implode("\n", $content));
+        self::saveFile($filename, implode(self::BROKE_LINE, $content), $update);
     }
 
-    public static function saveOnJsonFile(string $filename, array $dataStructure): void
+    public static function saveOnJsonFile(string $filename, array $dataStructure, bool $update = false): void
     {
-        self::saveFile($filename, json_encode($dataStructure, JSON_PRETTY_PRINT), true);
+        self::saveFile($filename, json_encode($dataStructure, JSON_PRETTY_PRINT), $update);
     }
 
-    public static function saveOnDotEnvFile(string $filename, array $dataStructure): void
+    public static function saveOnDotEnvFile(string $filename, array $dataStructure, bool $update = false): void
     {
         $content = '';
         foreach ($dataStructure as $key => $value) {
-            $content .= "{$key}={$value}\n";
+            $content .= "{$key}={$value}" . self::BROKE_LINE;
         }
 
-        self::saveFile($filename, $content, true);
+        self::saveFile($filename, $content, $update);
     }
 
     public static function saveFile(string $filename, string $content, bool $update = false): void

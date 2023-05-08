@@ -1,14 +1,13 @@
 # File and Path
+
 Salvando e lendo dados em arquivos de maneira simplificada
 
 ## Instalação
 
 Instale File and Path usando o **Composer**
 
-```json
-  {
-    "": {}
-  }
+```bash
+  composer update
 ```
 
 ## Rodando os testes
@@ -19,10 +18,9 @@ Para rodar os testes, rode o seguinte comando
   npm run test
 ```
 
-
 ## Funcionalidades
 
-- **Cria um caminho caso ainda não exista**
+-   **Cria um caminho caso ainda não exista**
 
 ```php
 File::createPathIfNotExists(
@@ -30,35 +28,35 @@ File::createPathIfNotExists(
 ): void
 ```
 
-- **Salva um texto em um arquivo**
+-   **Salva um texto em um arquivo**
 
 ```php
 File::saveFile(
-    string $filename, 
-    string $content, 
+    string $filename,
+    string $content,
     bool $update=false
 ): void
 ```
 
-- **Salva um array em um arquivo JSON**
+-   **Salva um array em um arquivo JSON**
 
 ```php
 File::saveOnJsonFile(
-    string $filename, 
+    string $filename,
     array $dataStructure
 ): void
 ```
 
-- **Salva um array em um arquivo .ENV**
+-   **Salva um array em um arquivo .ENV**
 
 ```php
 File::saveOnDotEnvFile(
-    string $filename, 
+    string $filename,
     array $dataStructure
 ): void
 ```
 
-- **Lê um arquivo e retorna o conteúdo como texto**
+-   **Lê um arquivo e retorna o conteúdo como texto**
 
 ```php
 File::readFile(
@@ -66,7 +64,7 @@ File::readFile(
 ): string
 ```
 
-- **Lê um arquivo JSON e retorna o conteúdo como um array**
+-   **Lê um arquivo JSON e retorna o conteúdo como um array**
 
 ```php
 File:readJsonFile(
@@ -74,7 +72,7 @@ File:readJsonFile(
 ): array
 ```
 
-- **Lê um arquivo .ENV e retorna o conteúdo como um array**
+-   **Lê um arquivo .ENV e retorna o conteúdo como um array**
 
 ```php
 File:readFromDotEnvFile(
