@@ -11,6 +11,16 @@ use Plugse\FP\Exceptions\FileCanNotBeRead;
 class File
 {
     private const BROKE_LINE = "\n";
+    public static function readLogFile(string $filename): array
+    {
+        $response = [];
+
+        foreach (explode("\n", self::readFile($filename)) as $row) {
+            array_push($response, explode(' - ', $row));
+        }
+
+        return $response;
+    }
     public static function readJsonFile(string $filename): array
     {
         return json_decode(self::readFile($filename), JSON_PRETTY_PRINT);
@@ -45,6 +55,17 @@ class File
         }
 
         return implode(self::BROKE_LINE, $fileContent);
+    }
+
+    public static function saveOnLogFile(string $filename, array $dataStructure): void
+    {
+        $content = [];
+
+        foreach ($dataStructure as $element) {
+            array_push($content, implode(' - ', $element));
+        }
+
+        self::saveFile($filename, implode("\n", $content));
     }
 
     public static function saveOnJsonFile(string $filename, array $dataStructure): void
