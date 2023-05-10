@@ -15,7 +15,7 @@ Instale File and Path usando o **Composer**
 Para rodar os testes, rode o seguinte comando
 
 ```bash
-  npm run test
+  vendor/bin/phpunit tests --colors -v --stop-on-failure --stop-on-warning --testdox
 ```
 
 ## Funcionalidades
