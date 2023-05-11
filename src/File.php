@@ -10,9 +10,10 @@ use Plugse\FP\Exceptions\FileCannotBeWritten;
 use Plugse\FP\Exceptions\FileNotFound;
 use Plugse\FP\Exceptions\FileCanNotBeRead;
 
-abstract class File
+class File
 {
-    protected const BROKE_LINE = "\n";
+    public const BROKE_LINE = "\n";
+
     public static function readFile(string $filename): string
     {
 
@@ -63,18 +64,4 @@ abstract class File
             }
         }
     }
-
-    public static function read(string $filename): array
-    {
-        return self::stringToArray(self::readFile($filename));
-    }
-
-    public static function save(string $filename, array $dataStructure, bool $update = false): void
-    {
-        self::saveFile($filename, self::arrayToString($dataStructure), $update);
-    }
-
-    abstract protected static function arrayToString(array $dataStructure): string;
-
-    abstract protected static function stringToArray(string $dataStructure): array;
 }

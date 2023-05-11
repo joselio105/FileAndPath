@@ -9,20 +9,29 @@ use Plugse\Fp\Env;
 
 class EnvTest extends TestCase
 {
-    public function testReadAndWrite()
+    private $filename;
+    private $content;
+
+    protected function setUp(): void
     {
-        $filename = "./tests/files/env/file.env";
-        $content = [
+        $this->filename = "./tests/files/env/file.env";
+        $this->content = [
             'element1' => 'Element One',
             'element2' => 'Element Thwo',
             'element3' => 'Element Three',
         ];
+    }
 
-        Env::save($filename, $content);
-        $contentRead = Env::read($filename);
+    protected function tearDown(): void
+    {
+        unlink($this->filename);
+    }
 
-        unlink($filename);
+    public function testReadAndWrite()
+    {
+        Env::save($this->filename, $this->content);
+        $contentRead = Env::read($this->filename);
 
-        $this->assertEquals($content, $contentRead);
+        $this->assertEquals($this->content, $contentRead);
     }
 }

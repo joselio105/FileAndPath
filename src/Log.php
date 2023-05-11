@@ -1,37 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Plugse\Fp;
 
-class Log extends File
+class Log implements FileType
 {
-    private const VALUE_SEPARATOR = ' - ';
-    protected static function arrayToString(array $dataStructure): string
+    private const VALUE_SEPARATOR = ' # ';
+
+    public static function read(string $filename): array
+    {
+        return self::stringToArray(File::readFile($filename));
+    }
+
+    public static function save(string $filename, array $dataStructure, bool $update = false): void
+    {
+        File::saveFile($filename, self::arrayToString($dataStructure), $update);
+    }
+
+    private static function arrayToString(array $dataStructure): string
     {
         $response = '';
 
-        $keys = array_keys($dataStructure[0]);
-        $response = implode(self::VALUE_SEPARATOR, $keys) . "\n";
         foreach ($dataStructure as $row) {
-            $response .= implode(self::VALUE_SEPARATOR, $row) . "\n";
+            $response .= implode(self::VALUE_SEPARATOR, $row) . File::BROKE_LINE;
         }
 
         return $response;
     }
 
-    protected static function stringToArray(string $dataStructure): array
+    private static function stringToArray(string $dataStructure): array
     {
         $response = [];
-        $dataLog = explode(self::BROKE_LINE, $dataStructure);
-        $keys = $dataLog[0];
-        unset($dataLog[0]);
+
+        $dataLog = explode(File::BROKE_LINE, $dataStructure);
 
         foreach ($dataLog as $row) {
-            foreach (explode(' - ', $row) as $keyId => $value) {
-                $response[$keys[$keyId]] = $value;
+            if (strlen($row) > 0) {
+                array_push($response, explode(self::VALUE_SEPARATOR, $row));
             }
         }
-
-
 
         return $response;
     }
