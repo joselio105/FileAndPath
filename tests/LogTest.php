@@ -9,31 +9,42 @@ use Plugse\Fp\Log;
 
 class LogTest extends TestCase
 {
-    private $filename;
-    private $content;
+    private static $filename;
+    private static $content;
 
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->filename = "./tests/files/log/file.log";
-        $this->content = [
+        self::$filename = "./tests/files/log/file.log";
+        self::$content = [
             ['id', 'name', 'description', 'createdAt'],
             [1, "Fulano dos Santos", "Bla bla blá", "[2023-05-10 -3]"],
             [2, "Beltrano da Silva", "Bla bla blá", "[2023-05-10 -3]"],
             [3, "Ciclano de Souza", "Bla bla blá", "[2023-05-10 -3]"],
-            [4, "Fulano dos Santos", "Bla bla blá", "[2023-05-10 -3]"],
-            [5, "Beltrano da Silva", "Bla bla blá", "[2023-05-10 -3]"],
-        ];
+            [4, "Fulano dos Santos", "Bla bla blá", "[2023-05-10 -3]"]        ];
     }
 
-    protected function tearDown(): void
+    public static function tearDownAfterClass(): void
     {
-        unlink($this->filename);
+        unlink(self::$filename);
     }
     public function testReadAndWrite()
     {
-        Log::save($this->filename, $this->content);
-        $contentRead = Log::read($this->filename);
+        Log::save(self::$filename, self::$content);
+        $contentRead = Log::read(self::$filename);
 
-        $this->assertEquals($this->content, $contentRead);
+        $this->assertEquals(self::$content, $contentRead);
+    }
+
+    public function testeReadAndWriteUpdating()
+    {
+        $contentToUpdate = [
+            ['id', 'name', 'description', 'createdAt'],
+            [5, "Beltrano da Silva", "Bla bla blá", "[2023-05-10 -3]"]
+        ];
+
+        Log::save(self::$filename, $contentToUpdate, true);
+        $contentRead = Log::read(self::$filename);
+
+        $this->assertContains($contentToUpdate, $contentRead);
     }
 }

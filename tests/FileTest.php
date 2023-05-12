@@ -9,25 +9,25 @@ use Plugse\Fp\File;
 
 class FileTest extends TestCase
 {
-    private $filename;
-    private $content;
+    private static $filename;
+    private static $content;
 
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->filename = "./tests/files/txt/file.txt";
-        $this->content = "Um conteúdo para testar";
+        self::$filename = "./tests/files/txt/file.txt";
+        self::$content = "Um conteúdo para testar";
     }
 
-    protected function tearDown(): void
+    public static function tearDownAfterClass(): void
     {
-        unlink($this->filename);
+        unlink(self::$filename);
     }
 
     public function testReadAndWrite()
     {
-        File::saveFile($this->filename, $this->content);
-        $contentRead = File::readFile($this->filename);
+        File::saveFile(self::$filename, self::$content);
+        $contentRead = File::readFile(self::$filename);
 
-        $this->assertEquals($this->content, $contentRead);
+        $this->assertEquals(self::$content, $contentRead);
     }
 }

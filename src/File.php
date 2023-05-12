@@ -21,12 +21,12 @@ class File
             throw new FileNotFound($filename);
         }
 
-        $fileContent = file($filename);
-        if (!$fileContent) {
+        $content = file_get_contents($filename);
+        if ($content === false) {
             throw new FileCanNotBeRead($filename);
         }
 
-        return implode(self::BROKE_LINE, $fileContent);
+        return $content;
     }
 
     public static function saveFile(string $filename, string $content, bool $update = false): void
@@ -47,7 +47,6 @@ class File
         }
 
         fclose($handle);
-        $action = $update ? 'atualizado' : 'criado';
     }
 
     public static function createPathIfNotExists(string $path): void

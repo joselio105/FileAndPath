@@ -15,7 +15,23 @@ class Log implements FileType
 
     public static function save(string $filename, array $dataStructure, bool $update = false): void
     {
-        File::saveFile($filename, self::arrayToString($dataStructure), $update);
+        $fileExists = file_exists($filename);
+        $contentSave = $fileExists ? self::read($filename) : [];
+
+        if ($update) {
+            $keys = $dataStructure[0];
+            unset($dataStructure[0]);
+
+            if ($fileExists) {
+                $contentSave = self::read($filename);
+                array_push($contentSave, $dataStructure);
+            } else {
+                File::saveFile($filename, self::arrayToString([$keys]));
+            }
+        }
+
+        $dataStructureToSave = $update ? $contentSave : $dataStructure;
+        File::saveFile($filename, self::arrayToString($dataStructureToSave), $update);
     }
 
     private static function arrayToString(array $dataStructure): string

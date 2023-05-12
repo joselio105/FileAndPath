@@ -9,13 +9,13 @@ use Plugse\Fp\Json;
 
 class JsonTest extends TestCase
 {
-    private $filename;
-    private $content;
+    private static $filename;
+    private static $content;
 
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->filename = "./tests/files/log/file.log";
-        $this->content = [
+        self::$filename = "./tests/files/json/file.json";
+        self::$content = [
             [
                 'id' => 1,
                 'name' => "Fulano dos Santos",
@@ -31,33 +31,31 @@ class JsonTest extends TestCase
         ];
     }
 
-    protected function tearDown(): void
+    public static function tearDownAfterClass(): void
     {
-        unlink($this->filename);
+        unlink(self::$filename);
     }
 
     public function testReadAndWrite()
     {
-        Json::save($this->filename, $this->content);
-        $contentRead = Json::read($this->filename);
+        Json::save(self::$filename, self::$content);
+        $contentRead = Json::read(self::$filename);
 
-        $this->assertEquals($this->content, $contentRead);
+        $this->assertEquals(self::$content, $contentRead);
     }
 
-    /* public function testReadAndWriteUpdating()
+    public function testReadAndWriteUpdating()
     {
         $contentToUpdate = [
-            // [
-                'id' => 3,
-                'name' => "Ciclano de Souza",
-                'description' => "Bla bla blá",
-                'createdAt' => "[2023-05-10 -3]"
-            // ]
+            'id' => 3,
+            'name' => "Ciclano de Souza",
+            'description' => "Bla bla blá",
+            'createdAt' => "[2023-05-10 -3]"
         ];
 
-        Json::save($this->filename, $contentToUpdate);
-        $contentRead = Json::read($this->filename);
+        Json::save(self::$filename, $contentToUpdate, true);
+        $contentRead = Json::read(self::$filename);
 
         $this->assertContains($contentToUpdate, $contentRead);
-    } */
+    }
 }
