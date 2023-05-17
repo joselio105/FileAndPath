@@ -32,44 +32,36 @@ class Log implements FileType
 
     private static function getContent(bool $update, string $filename, array $dataStructure): array
     {
-        $fileExists = file_exists($filename);
-        $keys = self::getKeys($update, $fileExists, $filename, $dataStructure);
-        $contentSave = $fileExists ? self::read($filename) : [$keys];
+        $contentSave = file_exists($filename) ? self::read($filename) : [];
 
-        $dataStructureValues = key_exists(0, $dataStructure)
-            ? self::getValues($dataStructure)
-            : array_values($dataStructure);
-
-        if ($update) {
-            if (key_exists(0, $dataStructure)) {
-                foreach ($dataStructureValues as $data) {
-                    array_push($contentSave, $data);
-                }
-            } else {
-                array_push($contentSave, $dataStructureValues);
+        if (key_exists(0, $dataStructure)) {
+            foreach ($dataStructure as $row) {
+                array_push($contentSave, $row);
             }
-
-            return $contentSave;
         } else {
-            array_unshift(
-                $dataStructureValues,
-                $keys
-            );
-            return $dataStructureValues;
+            array_push($contentSave, $dataStructure);
         }
+
+        return self::convertArrayToLog($contentSave);
     }
 
-    private static function getValues(array $dataStructure): array
+    private static function convertArrayToLog(array $dataStructure): array
     {
-        $dataStructureValues = [];
-        foreach ($dataStructure as $element) {
-            array_push(
-                $dataStructureValues,
-                array_values($element)
-            );
-        }
+        if (key_exists(0, $dataStructure)) {
+            $keys = array_keys($dataStructure[0]);
+            $logStructure = [$keys];
+            foreach ($dataStructure as $row) {
+                array_push($logStructure, array_values($row));
+            }
 
-        return $dataStructureValues;
+            return $logStructure;
+        } else {
+            $keys = array_keys($dataStructure);
+            $logStructure = [$keys];
+            array_push($logStructure, array_values($dataStructure));
+
+            return $logStructure;
+        }
     }
 
     private static function arrayToString(array $dataStructure): string

@@ -31,11 +31,6 @@ class JsonTest extends TestCase
         ];
     }
 
-    public static function tearDownAfterClass(): void
-    {
-        unlink(self::$filename);
-    }
-
     public function testReadAndWrite()
     {
         Json::save(self::$filename, self::$content);
@@ -55,7 +50,17 @@ class JsonTest extends TestCase
 
         Json::save(self::$filename, $contentToUpdate, true);
         $contentRead = Json::read(self::$filename);
-
+        unlink(self::$filename);
         $this->assertContains($contentToUpdate, $contentRead);
+    }
+
+    public function testReadAndWriteUpdatingANewFile()
+    {
+        $filename = "./tests/files/log/newFile.log";
+        Json::save($filename, self::$content, true);
+        $contentRead = Json::read($filename);
+        unlink($filename);
+
+        $this->assertEquals(self::$content, $contentRead);
     }
 }

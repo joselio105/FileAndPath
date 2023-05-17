@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Plugse\Fp;
 
-use Plugse\FP\Exceptions\FileAlreadyExists;
-use Plugse\FP\Exceptions\FileCannotBeOppend;
-use Plugse\FP\Exceptions\FileCannotBeWritten;
-use Plugse\FP\Exceptions\FileNotFound;
-use Plugse\FP\Exceptions\FileCanNotBeRead;
+use Plugse\Fp\Exceptions\FileAlreadyExists;
+use Plugse\Fp\Exceptions\FileNotFound;
 
 class File
 {
@@ -22,9 +19,6 @@ class File
         }
 
         $content = file_get_contents($filename);
-        if ($content === false) {
-            throw new FileCanNotBeRead($filename);
-        }
 
         return $content;
     }
@@ -38,14 +32,8 @@ class File
             }
         }
 
-        if (!$handle = fopen($filename, 'w')) {
-            throw new FileCannotBeOppend($filename);
-        }
-
-        if (fwrite($handle, $content) === false) {
-            throw new FileCannotBeWritten($filename);
-        }
-
+        $handle = fopen($filename, 'w');
+        fwrite($handle, $content);
         fclose($handle);
     }
 

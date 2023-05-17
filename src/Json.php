@@ -14,18 +14,15 @@ class Json implements FileType
     public static function save(string $filename, array $dataStructure, bool $update = false): void
     {
         $fileExists = file_exists($filename);
-        $contentSave = $fileExists ? self::read($filename) : [];
 
-        if ($update) {
-            if ($fileExists) {
-                $contentSave = self::read($filename);
-                array_push($contentSave, $dataStructure);
-            } else {
-                File::saveFile($filename, self::arrayToString($contentSave));
-            }
+        if ($fileExists) {
+            $contentSave = self::read($filename);
+            array_push($contentSave, $dataStructure);
+            $dataStructureToSave = $contentSave;
+        } else {
+            $dataStructureToSave = $dataStructure;
         }
 
-        $dataStructureToSave = $update ? $contentSave : $dataStructure;
         File::saveFile($filename, self::arrayToString($dataStructureToSave), $update);
     }
 

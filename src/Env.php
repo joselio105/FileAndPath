@@ -14,20 +14,17 @@ class Env implements FileType
     public static function save(string $filename, array $dataStructure, bool $update = false): void
     {
         $fileExists = file_exists($filename);
-        $contentSave = $fileExists ? self::read($filename) : [];
 
-        if ($update) {
-            if ($fileExists) {
-                $contentSave = self::read($filename);
-                foreach ($dataStructure as $key => $value) {
-                    $contentSave[$key] = $value;
-                }
-            } else {
-                File::saveFile($filename, self::arrayToString($contentSave));
+        if ($fileExists) {
+            $contentSave = self::read($filename);
+            foreach ($dataStructure as $key => $value) {
+                $contentSave[$key] = $value;
             }
+            $dataStructureToSave = $contentSave;
+        } else {
+            $dataStructureToSave = $dataStructure;
         }
 
-        $dataStructureToSave = $update ? $contentSave : $dataStructure;
         File::saveFile($filename, self::arrayToString($dataStructureToSave), $update);
     }
 

@@ -59,19 +59,22 @@ class LogTest extends TestCase
             'createdAt' => "[2023-05-10 -3]",
         ];
 
-        $array = [
-            ['id' => 1, 'name' => "Jose"], ['id' => 2, 'name' => "Jose"]
-        ];
-        $searchBy = ['id' => 2, 'name' => "Jose"];
-
-
-        // Log::save(self::$filename, $contentToUpdate, true);
-        // $contentRead = Log::read(self::$filename);
+        Log::save(self::$filename, $contentToUpdate, true);
+        $contentRead = Log::read(self::$filename);
         unlink(self::$filename);
-        $search = array_search($searchBy, $array);
+        $search = array_search($contentToUpdate, $contentRead);
 
         $this->assertIsNumeric($search);
         $this->assertNotEquals(false, $search);
-        // $this->assertContains($contentToUpdate, $contentRead);
+    }
+
+    public function testReadAndWriteUpdatingANewFile()
+    {
+        $filename = "./tests/files/log/newFile.log";
+        Log::save($filename, self::$content, true);
+        $contentRead = Log::read($filename);
+        unlink($filename);
+
+        $this->assertEquals(self::$content, $contentRead);
     }
 }

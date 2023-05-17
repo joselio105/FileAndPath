@@ -22,11 +22,6 @@ class EnvTest extends TestCase
         ];
     }
 
-    public static function tearDownAfterClass(): void
-    {
-        unlink(self::$filename);
-    }
-
     public function testReadAndWrite()
     {
         Env::save(self::$filename, self::$content);
@@ -43,12 +38,21 @@ class EnvTest extends TestCase
 
         Env::save(self::$filename, $contentToUpdate, true);
         $contentRead = Env::read(self::$filename);
+        unlink(self::$filename);
+
         foreach ($contentToUpdate as $key => $value) {
             self::$content[$key] = $value;
             $this->assertArrayHasKey($key, $contentRead);
         }
     }
 
-    /* public function testUpdateANewFile()
-    {} */
+    public function testReadAndWriteUpdatingANewFile()
+    {
+        $filename = "./tests/files/log/newFile.log";
+        Env::save($filename, self::$content, true);
+        $contentRead = Env::read($filename);
+        unlink($filename);
+
+        $this->assertEquals(self::$content, $contentRead);
+    }
 }
