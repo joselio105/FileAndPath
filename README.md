@@ -2,6 +2,13 @@
 
 Salvando e lendo dados em arquivos de maneira simplificada
 
+## Menu
+
+-   [Instalação](#instalação)
+-   [Rodando os Testes](#rodando-os-testes)
+-   [Funcionalidades](#funcionalidades)
+-   [Exceções](#exceções)
+
 ## Instalação
 
 Instale File and Path usando o **Composer**
@@ -15,7 +22,7 @@ Instale File and Path usando o **Composer**
 Para rodar os testes, rode o seguinte comando
 
 ```bash
-  vendor/bin/phpunit tests --colors -v --stop-on-failure --stop-on-warning --testdox
+  composer run-script post-install-cmd
 ```
 
 ## Funcionalidades
@@ -41,7 +48,7 @@ File::saveFile(
 -   **Salva um array em um arquivo JSON**
 
 ```php
-File::saveOnJsonFile(
+Json::Save(
     string $filename,
     array $dataStructure
 ): void
@@ -50,7 +57,16 @@ File::saveOnJsonFile(
 -   **Salva um array em um arquivo .ENV**
 
 ```php
-File::saveOnDotEnvFile(
+Env::save(
+    string $filename,
+    array $dataStructure
+): void
+```
+
+-   **Salva um array em um arquivo de LOG**
+
+```php
+Log::save(
     string $filename,
     array $dataStructure
 ): void
@@ -67,7 +83,7 @@ File::readFile(
 -   **Lê um arquivo JSON e retorna o conteúdo como um array**
 
 ```php
-File:readJsonFile(
+Json::read(
     string $filename
 ): array
 ```
@@ -75,9 +91,21 @@ File:readJsonFile(
 -   **Lê um arquivo .ENV e retorna o conteúdo como um array**
 
 ```php
-File:readFromDotEnvFile(
+Env::read(
+    string $filename
+): array
+```
+
+-   **Lê um arquivo de LOG e retorna o conteúdo como um array**
+
+```php
+Log::read(
     string $filename
 ): array
 ```
 
 ## Exceções
+
+-   FileAlreadyExists
+
+-   FileNotFound

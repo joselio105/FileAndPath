@@ -2,6 +2,11 @@
     "name": "plugse/fileandpath",
     "type": "project",
     "license": "MIT",
+    "scripts": {
+        "post-install-cmd": [
+            "./vendor/bin/phpunit tests -v --stop-on-failure --stop-on-warning --testdox"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "Plugse\\Fp\\": "src/",
