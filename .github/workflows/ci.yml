@@ -9,18 +9,18 @@ jobs:
         steps:
             - uses: actions/checkout@v3
 
-            - name: Setup PHP with PECL extension
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: "7.4"
-                  extensions: imagick, swoole
+            # - name: Setup PHP with PECL extension
+            #   uses: shivammathur/setup-php@v2
+            #   with:
+            #       php-version: "7.4"
+            #       extensions: imagick, swoole
 
             - name: Instal dependencies
               uses: php-actions/composer@v6
               with:
-                php_version: "7.4"
+                  php_version: "7.4"
 
             - name: Phpunit tests
               uses: php-actions/phpunit@v3
               with:
-                php_version: "7.4"
+                  php_version: "7.4"
