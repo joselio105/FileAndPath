@@ -1,7 +1,14 @@
 {
     "name": "plugse/fileandpath",
+    "description": "A library to assist in writing and reading documents.",
     "type": "project",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "José Hélio Veríssimo Jr",
+            "email": "jose.helio@ufsc.br"
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
             "./vendor/bin/phpunit tests -v --stop-on-failure --stop-on-warning --testdox"
@@ -19,12 +26,9 @@
             "Test\\": "test"
         }
     },
-    "authors": [
-        {
-            "name": "José Hélio Veríssimo Jr",
-            "email": "jose.helio@ufsc.br"
-        }
-    ],
+    "require": {
+        "php": ">=7.4"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.6"
     }
