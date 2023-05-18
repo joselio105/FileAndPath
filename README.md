@@ -1,14 +1,17 @@
 # File and Path
 
+![PHP](https://img.shields.io/badge/PHP-7.4.33-blue)
+![GitHub](https://img.shields.io/github/license/joselio105/FileAndPath)
+![PHP Unit](https://img.shields.io/badge/Depencencies-PHPUnit9.6-yellowgreen)
+
 Salvando e lendo dados em arquivos de maneira simplificada
 
 ## Menu
 
-- [Instalação como Dependência](#instalação-como-dependência)
-- [Dependências](#dependências)
-- [Rodando os Testes](#rodando-os-testes)
-- [Funcionalidades](#funcionalidades)
-- [Exceções](#exceções)
+-   [Instalação como Dependência](#instalação-como-dependência)
+-   [Rodando os Testes](#rodando-os-testes)
+-   [Funcionalidades](#funcionalidades)
+-   [Exceções](#exceções)
 
 ## Instalação como dependência
 
@@ -17,10 +20,6 @@ Instale File and Path usando o **Composer**
 ```bash
   composer update
 ```
-
-## Dependências
-
-
 
 ## Rodando os testes
 
