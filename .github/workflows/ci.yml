@@ -15,8 +15,8 @@ jobs:
                   php-version: "7.4"
                   extensions: imagick, swoole
 
-            - name: Instal dependencies
-              uses: php-actions/composer@v6
+            #    - name: Instal dependencies
+            #   uses: php-actions/composer@v6
 
             - name: Phpunit tests
               uses: php-actions/phpunit@v3
