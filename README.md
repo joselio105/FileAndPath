@@ -4,18 +4,23 @@ Salvando e lendo dados em arquivos de maneira simplificada
 
 ## Menu
 
--   [Instalação](#instalação)
--   [Rodando os Testes](#rodando-os-testes)
--   [Funcionalidades](#funcionalidades)
--   [Exceções](#exceções)
+- [Instalação como Dependência](#instalação-como-dependência)
+- [Dependências](#dependências)
+- [Rodando os Testes](#rodando-os-testes)
+- [Funcionalidades](#funcionalidades)
+- [Exceções](#exceções)
 
-## Instalação
+## Instalação como dependência
 
 Instale File and Path usando o **Composer**
 
 ```bash
   composer update
 ```
+
+## Dependências
+
+
 
 ## Rodando os testes
 

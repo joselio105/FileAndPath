@@ -4,4 +4,4 @@
 
 require_once 'vendor/composer/autoload_real.php';
 
-return ComposerAutoloaderInit37b06b0ed0621cb19ceff79d6912dcb5::getLoader();
+return ComposerAutoloaderInit1e9da99d3159b84e5c6b8f0d78e60e96::getLoader();
