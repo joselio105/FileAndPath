@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Plugse\Fp;
 
-use Plugse\Fp\Errors\Existing;
+use Plugse\Fp\Existing;
 use Plugse\Fp\Errors\NotFound;
 
 class File
