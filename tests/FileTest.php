@@ -6,7 +6,7 @@ namespace Test;
 
 use PHPUnit\Framework\TestCase;
 use Plugse\Fp\Exceptions\FileAlreadyExists;
-use Plugse\FP\Exceptions\FileNotFound;
+use Plugse\Fp\Exceptions\FileNotFound;
 use Plugse\Fp\File;
 
 class FileTest extends TestCase
