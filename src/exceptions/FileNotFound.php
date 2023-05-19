@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Plugse\FP\Exceptions;
+namespace Plugse\Fp\Exceptions;
 
 use Exception;
 

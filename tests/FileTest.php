@@ -55,12 +55,12 @@ class FileTest extends TestCase
         $this->assertEquals(self::$content, $contentRead);
     }
 
-    /* public function testFileAlreadyExists()
+    public function testFileAlreadyExists()
     {
         $this->expectException(FileAlreadyExists::class);
         File::saveFile(self::$filename, self::$content);
         File::saveFile(self::$filename, self::$content);
-    } */
+    }
 
     public function testFileNotFound()
     {
