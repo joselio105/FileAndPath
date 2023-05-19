@@ -57,14 +57,16 @@ class FileTest extends TestCase
 
     public function testFileAlreadyExists()
     {
-        $this->expectException(Existing::class);
+        $exception = new Existing(self::$filename);
+        $this->expectException(get_class($exception));
         File::saveFile(self::$filename, self::$content);
         File::saveFile(self::$filename, self::$content);
     }
 
     public function testFileNotFound()
     {
-        $this->expectException(NotFound::class);
+        $exception = new NotFound(self::$filename);
+        $this->expectException(get_class($exception));
         File::readFile('notfoud.txt');
     }
 }
