@@ -9,6 +9,8 @@ Salvando e lendo dados em arquivos de maneira simplificada
 ## Menu
 
 -   [Instalação como Dependência](#instalação-como-dependência)
+    > -   [Diretamente pelo Composer](#diretamente-pelo-composer)
+    > -   [Alterando o arquivo composer.json](#alterando-o-arquivo-composerjson)
 -   [Rodando os Testes](#rodando-os-testes)
 -   [Funcionalidades](#funcionalidades)
 -   [Exceções](#exceções)
@@ -17,8 +19,29 @@ Salvando e lendo dados em arquivos de maneira simplificada
 
 Instale File and Path usando o **Composer**
 
+### Diretamente pelo Composer
+
 ```bash
-  composer update
+  composer require plugse/fileandpath
+```
+
+### Alterando o arquivo composer.json
+
+1. Crie ou altere o arquivo composer.json
+2. Crie ou altere a propriedade **require**
+
+```json
+{
+    "require": {
+        "plugse/fileandpath": "^1"
+    }
+}
+```
+
+3. Atualize a biblioteca com o comando abaixo:
+
+```bash
+    composer update
 ```
 
 ## Rodando os testes

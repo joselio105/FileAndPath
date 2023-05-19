@@ -2,6 +2,9 @@
     "name": "plugse/fileandpath",
     "description": "A library to assist in writing and reading documents.",
     "type": "library",
+    "keywords": ["write","read", "path", "file", "env", "log", "json"],
+    "homepage": "https://github.com/joselio105/FileAndPath",
+    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
