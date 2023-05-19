@@ -7,20 +7,15 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
+            - name: Build environment
+              uses: actions/checkout@v3
 
-            # - name: Setup PHP with PECL extension
-            #   uses: shivammathur/setup-php@v2
-            #   with:
-            #       php-version: "7.4"
-            #       extensions: imagick, swoole
-
-            - name: Instal dependencies
+            - name: Instal dependencies and tests - PHP 7.4
               uses: php-actions/composer@v6
               with:
                   php_version: "7.4"
 
-            - name: Phpunit tests
-              uses: php-actions/phpunit@v3
+            - name: Instal dependencies and tests - PHP 8.1
+              uses: php-actions/composer@v6
               with:
-                  php_version: "7.4"
+                  php_version: "8.1"
