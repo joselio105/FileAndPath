@@ -11,7 +11,7 @@
     ],
     "scripts": {
         "post-install-cmd": [
-            "./vendor/bin/phpunit tests -v --stop-on-failure --stop-on-warning --testdox"
+            "./vendor/bin/phpunit tests -v --testdox"
         ]
     },
     "autoload": {
