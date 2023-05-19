@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Plugse\Fp\Exceptions;
+namespace Plugse\Fp\Errors;
 
 use Exception;
 
-class FileNotFound extends Exception
+class NotFound extends Exception
 {
     public function __construct(string $filename)
     {
