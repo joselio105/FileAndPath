@@ -9,8 +9,8 @@ Salvando e lendo dados em arquivos de maneira simplificada
 ## Menu
 
 -   [Instalação como Dependência](#instalação-como-dependência)
-    > -   [Diretamente pelo Composer](#diretamente-pelo-composer)
-    > -   [Alterando o arquivo composer.json](#alterando-o-arquivo-composerjson)
+    -   [Diretamente pelo Composer](#diretamente-pelo-composer)
+    -   [Alterando o arquivo composer.json](#alterando-o-arquivo-composerjson)
 -   [Rodando os Testes](#rodando-os-testes)
 -   [Funcionalidades](#funcionalidades)
 -   [Exceções](#exceções)
