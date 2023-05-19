@@ -1,7 +1,8 @@
 # File and Path
 
-![PHP](https://img.shields.io/badge/PHP-7.4.33-blue)
+![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/joselio105/fileandpath?include_prereleases)
 ![GitHub](https://img.shields.io/github/license/joselio105/FileAndPath)
+![PHP](https://img.shields.io/badge/PHP-7.4.33-blue)
 ![PHP Unit](https://img.shields.io/badge/depencencies-PHPUnit9.6-yellowgreen)
 
 Salvando e lendo dados em arquivos de maneira simplificada
