@@ -1,7 +1,7 @@
 {
     "name": "plugse/fileandpath",
     "description": "A library to assist in writing and reading documents.",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
