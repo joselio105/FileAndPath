@@ -6,7 +6,7 @@ namespace Plugse\Fp;
 
 use Exception;
 
-class Existing extends Exception
+class ExistingException extends Exception
 {
     public function __construct(string $filename)
     {

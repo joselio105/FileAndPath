@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Plugse\Fp;
 
-use Plugse\Fp\Existing;
-use Plugse\Fp\Errors\NotFound;
+use Plugse\Fp\ExistingException;
+use Plugse\Fp\NotFoundException;
 
 class File
 {
@@ -15,7 +15,7 @@ class File
     {
 
         if (!file_exists($filename)) {
-            throw new NotFound($filename);
+            throw new NotFoundException($filename);
         }
 
         $content = file_get_contents($filename);
@@ -28,7 +28,7 @@ class File
         self::createPathIfNotExists(dirname($filename));
         if (!$update) {
             if (file_exists($filename)) {
-                throw new Existing($filename);
+                throw new ExistingException($filename);
             }
         }
 

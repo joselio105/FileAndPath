@@ -6,7 +6,8 @@ namespace Test;
 
 use PHPUnit\Framework\TestCase;
 use Plugse\Fp\File;
-use Plugse\Fp\Existing;
+use Plugse\Fp\ExistingException;
+use Plugse\Fp\NotFoundException;
 
 class FileTest extends TestCase
 {
@@ -56,17 +57,14 @@ class FileTest extends TestCase
 
     public function testFileAlreadyExists()
     {
-        $exception = new Existing(self::$filename);
-        $this->assertEquals(get_class($exception), Existing::class);
-        // $this->expectException(get_class($exception));
+        $this->expectException(ExistingException::class);
         File::saveFile(self::$filename, self::$content);
-        // File::saveFile(self::$filename, self::$content);
+        File::saveFile(self::$filename, self::$content);
     }
 
-    /* public function testFileNotFound()
+    public function testFileNotFound()
     {
-        $exception = new \Plugse\Fp\Errors\NotFound(self::$filename);
-        $this->expectException(get_class($exception));
+        $this->expectException(NotFoundException::class);
         File::readFile('notfoud.txt');
-    } */
+    }
 }
