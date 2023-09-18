@@ -8,7 +8,7 @@ class Json implements FileType
 {
     public static function read(string $filename): array
     {
-        return self::stringToArray(File::readFile($filename));
+        return self::stringToArray(file_get_contents($filename));
     }
 
     public static function save(string $filename, array $dataStructure, bool $update = false): void
@@ -23,7 +23,7 @@ class Json implements FileType
             $dataStructureToSave = $dataStructure;
         }
 
-        File::saveFile($filename, self::arrayToString($dataStructureToSave), $update);
+        file_put_contents($filename, self::arrayToString($dataStructureToSave));
     }
 
     private static function arrayToString(array $dataStructure): string

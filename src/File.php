@@ -11,32 +11,6 @@ class File
 {
     public const BROKE_LINE = "\n";
 
-    public static function readFile(string $filename): string
-    {
-
-        if (!file_exists($filename)) {
-            throw new NotFoundException($filename);
-        }
-
-        $content = file_get_contents($filename);
-
-        return $content;
-    }
-
-    public static function saveFile(string $filename, string $content, bool $update = false): void
-    {
-        self::createPathIfNotExists(dirname($filename));
-        if (!$update) {
-            if (file_exists($filename)) {
-                throw new ExistingException($filename);
-            }
-        }
-
-        $handle = fopen($filename, 'w');
-        fwrite($handle, $content);
-        fclose($handle);
-    }
-
     public static function createPathIfNotExists(string $path): void
     {
         if (file_exists($path)) {

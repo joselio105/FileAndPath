@@ -63,16 +63,6 @@ File::createPathIfNotExists(
 ): void
 ```
 
--   **Salva um texto em um arquivo**
-
-```php
-File::saveFile(
-    string $filename,
-    string $content,
-    bool $update=false
-): void
-```
-
 -   **Salva um array em um arquivo JSON**
 
 ```php
@@ -98,14 +88,6 @@ Log::save(
     string $filename,
     array $dataStructure
 ): void
-```
-
--   **Lê um arquivo e retorna o conteúdo como texto**
-
-```php
-File::readFile(
-    string $filename
-): string
 ```
 
 -   **Lê um arquivo JSON e retorna o conteúdo como um array**

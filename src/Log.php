@@ -10,24 +10,13 @@ class Log implements FileType
 
     public static function read(string $filename): array
     {
-        return self::stringToArray(File::readFile($filename));
+        return self::stringToArray(file_get_contents($filename));
     }
 
     public static function save(string $filename, array $dataStructure, bool $update = false): void
     {
         $dataStructureToSave = self::getContent($update, $filename, $dataStructure);
-        File::saveFile($filename, self::arrayToString($dataStructureToSave), $update);
-    }
-
-    private static function getKeys(bool $update, bool $fileExists, string $filename, array $dataStructure): array
-    {
-        $keys = key_exists(0, $dataStructure) ? array_keys($dataStructure[0]) : array_keys($dataStructure);
-
-        if ($update and !$fileExists) {
-            File::saveFile($filename, self::arrayToString($keys));
-        }
-
-        return $keys;
+        file_put_contents($filename, self::arrayToString($dataStructureToSave));
     }
 
     private static function getContent(bool $update, string $filename, array $dataStructure): array
