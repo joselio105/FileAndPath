@@ -35,7 +35,7 @@ class Env implements FileType
         $response = '';
 
         foreach ($dataStructure as $key => $value) {
-            $response .= "{$key} = {$value} " . File::BROKE_LINE;
+            $response .= "{$key} = {$value} " . self::BROKE_LINE;
         }
 
         return $response;
