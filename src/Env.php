@@ -6,6 +6,8 @@ namespace Plugse\Fp;
 
 class Env implements FileType
 {
+    private const BROKE_LINE = "\n";
+
     public static function read(string $filename): array
     {
         return self::stringToArray(file_get_contents($filename));
@@ -43,7 +45,7 @@ class Env implements FileType
     {
         $response = [];
 
-        foreach (explode(File::BROKE_LINE, $dataStructure) as $row) {
+        foreach (explode(self::BROKE_LINE, $dataStructure) as $row) {
             if (strlen($row) > 0) {
                 [$key, $value] = explode('=', $row);
                 $response[trim($key)] = trim($value);
